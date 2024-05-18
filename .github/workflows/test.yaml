@@ -1,4 +1,4 @@
-name: Angular Headless Browser Test (Jasmine)
+name: Angular Test (Jasmine)
 
 on:
   pull_request:

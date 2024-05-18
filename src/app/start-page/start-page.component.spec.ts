@@ -22,10 +22,12 @@ describe('StartPageComponent', () => {
   });
 
   describe('onPlayButtonClicked', () => {
-    it('should throw an error', () => {
-      expect(() => component.onPlayButtonClicked()).toThrowError(
-        'Not implemented'
-      );
+    it('should navigate to sudoku board page', () => {
+      const navigateSpy = spyOn(component.router, 'navigate');
+      component.onPlayButtonClicked();
+      expect(navigateSpy).toHaveBeenCalledWith(['/sudoku-board'], {
+        queryParams: { difficulty: EDifficulty.Easy },
+      });
     });
   });
 

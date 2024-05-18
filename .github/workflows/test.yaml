@@ -1,4 +1,4 @@
-name: Angular Test and Lint
+name: Angular Headless Browser Test (Jasmine)
 
 on:
   pull_request:

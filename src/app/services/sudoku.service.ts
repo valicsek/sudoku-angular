@@ -21,7 +21,7 @@ export class SudokuService {
       .join('%2C');
   }
 
-  private encodeParams(params: any): string {
+  private encodeParams(params: { [key: string]: number[][] }): string {
     return Object.keys(params)
       .map((key) => `${key}=%5B${this.encodeBoard(params[key])}%5D`)
       .join('&');
@@ -34,7 +34,7 @@ export class SudokuService {
    */
   generateBoard(difficulty: EDifficulty): Observable<SudokuServiceResponse> {
     return this.http.get<SudokuServiceResponse>(
-      `${this.url}/board?difficulty=${difficulty.toLowerCase()}`
+      `${this.url}/board?difficulty=${difficulty.toLowerCase()}`,
     );
   }
 
@@ -48,7 +48,7 @@ export class SudokuService {
     return this.http.post<SudokuServiceValidateResponse>(
       `${this.url}/validate`,
       this.encodeParams(data),
-      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
     );
   }
 
@@ -62,7 +62,7 @@ export class SudokuService {
     return this.http.post<SudokuServiceSolveResponse>(
       `${this.url}/solve`,
       this.encodeParams(data),
-      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
     );
   }
 }

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { EDifficulty } from '../../shared/enums/shared.enums';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-start-page',
   standalone: true,
@@ -9,13 +9,14 @@ import { EDifficulty } from '../../shared/enums/shared.enums';
   styleUrl: './start-page.component.css',
 })
 export class StartPageComponent {
+  router = inject(Router);
   difficultyLevels: EDifficulty[] = Object.values(EDifficulty);
 
   /**
    * Event handler for the play button click event.
-   * @throws {Error} - Throws an error indicating that the method is not implemented.
    */
   onPlayButtonClicked() {
-    throw new Error('Not implemented');
+    const queryParams = { difficulty: 'easy' };
+    this.router.navigate(['/sudoku-board'], { queryParams });
   }
 }

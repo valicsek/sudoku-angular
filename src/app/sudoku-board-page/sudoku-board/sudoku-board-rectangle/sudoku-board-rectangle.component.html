@@ -1,0 +1,7 @@
+<div
+  class="sudoku-board-rectangle"
+  [ngClass]="calculateBackgroundColor()"
+  contenteditable
+>
+  {{ value !== 0 ? value : "" }}
+</div>

@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+/* Design Token Variables */
+:root {
+    --primary-color: #6199F6;
+    --secondary-color: #00E8F2;
+    --tertiary-color: #E3E3E3;
+
+    --body-background-color: var(--primary-color);
+    --body-text-color: #FFF;
+    --font-family: 'Inter', sans-serif;
+
+    --button-primary-background-color: var(--secondary-color);
+    --button-primary-text-color: #FFF;
+    --button-secondary-background-color: #FFF;
+    --button-secondary-text-color: var(--primary-color);
+    --button-tertiary-background-color: var(--tertiary-color);
+    --button-tertiary-text-color: #000;
+
+    --padding-small: 8px;
+    --padding-medium: 16px;
+    --padding-large: 24px;
+    --padding-xlarge: 32px;
+    
+    --margin-small: 8px;
+    --margin-medium: 16px;
+    --margin-large: 24px;
+    --margin-xlarge: 32px;
+}
+
+body {
+    background: var(--body-background-color);
+    font-family: var(--font-family);
+    color: var(--body-text-color);
+    margin: 0;
+    padding: 0;
+}

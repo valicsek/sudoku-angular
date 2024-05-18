@@ -1,0 +1,5 @@
+<div class="sudoku-board">
+  @for (row of board; track row) { @for (col of row; track col) {
+  <app-sudoku-board-rectangle [value]="col" />
+  } }
+</div>

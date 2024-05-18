@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class SudokuService {
   http = inject(HttpClient);
+  url = 'https://sugoku.onrender.com';
 
   private encodeBoard(board: number[][]): string {
     return board
@@ -33,7 +34,7 @@ export class SudokuService {
    */
   generateBoard(difficulty: EDifficulty): Observable<SudokuServiceResponse> {
     return this.http.get<SudokuServiceResponse>(
-      `https://sugoku.onrender.com/board?difficulty=${difficulty.toLowerCase()}`
+      `${this.url}/board?difficulty=${difficulty.toLowerCase()}`
     );
   }
 
@@ -45,7 +46,7 @@ export class SudokuService {
   validateBoard(board: number[][]): Observable<SudokuServiceValidateResponse> {
     const data = { board };
     return this.http.post<SudokuServiceValidateResponse>(
-      'https://sugoku.onrender.com/validate',
+      `${this.url}/validate`,
       this.encodeParams(data),
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
     );
@@ -59,7 +60,7 @@ export class SudokuService {
   solveBoard(board: number[][]): Observable<SudokuServiceSolveResponse> {
     const data = { board };
     return this.http.post<SudokuServiceSolveResponse>(
-      'https://sugoku.onrender.com/solve',
+      `${this.url}/solve`,
       this.encodeParams(data),
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
     );

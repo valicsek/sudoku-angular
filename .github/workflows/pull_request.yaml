@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Angular Test and Lint
 
 on:
   pull_request:

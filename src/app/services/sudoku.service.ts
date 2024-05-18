@@ -21,7 +21,7 @@ export class SudokuService {
       .join('%2C');
   }
 
-  private encodeParams(params: { [key: string]: number[][] }): string {
+  private encodeParams(params: any): string {
     return Object.keys(params)
       .map((key) => `${key}=%5B${this.encodeBoard(params[key])}%5D`)
       .join('&');

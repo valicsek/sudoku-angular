@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Sudoku</h1>
+  <select>
+    @for (item of difficultyLevels; track item){
+    <option>{{ item }}</option>
+    }
+  </select>
+  <button (click)="onPlayButtonClicked()">Play</button>
+</div>

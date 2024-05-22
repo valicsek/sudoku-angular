@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { SudokuBoardComponent } from './sudoku-board/sudoku-board.component';
 import { SudokuService } from '../services/sudoku.service';
-import { EDifficulty } from '../../shared/enums/shared.enums';
+import { EDifficulty } from '../shared/enums/shared.enums';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

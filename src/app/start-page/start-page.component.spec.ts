@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StartPageComponent } from './start-page.component';
-import { EDifficulty } from '../../shared/enums/shared.enums';
+import { EDifficulty } from '../shared/enums/shared.enums';
 
 describe('StartPageComponent', () => {
   let component: StartPageComponent;

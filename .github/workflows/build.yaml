@@ -1,4 +1,4 @@
-name: Angular Lint
+name: Angular Build
 
 on:
   pull_request:

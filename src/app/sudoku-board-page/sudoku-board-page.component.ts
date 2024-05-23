@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SudokuBoardComponent } from './sudoku-board/sudoku-board.component';
 import { SudokuService } from '../services/sudoku.service';
 import { EDifficulty } from '../shared/enums/shared.enums';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { SudokuBoardMenuComponent } from './sudoku-board-menu/sudoku-board-menu.component';
 import { AsyncPipe } from '@angular/common';
@@ -75,7 +75,7 @@ export class SudokuBoardPageComponent implements OnInit, OnDestroy {
     this.numberOfMistakes.next(0);
   }
 
-  private handleDifficultyParams(params: { difficulty: string }) {
+  private handleDifficultyParams(params: Params) {
     const difficulty = params['difficulty'] as EDifficulty;
 
     if (Object.values(EDifficulty).includes(difficulty)) {

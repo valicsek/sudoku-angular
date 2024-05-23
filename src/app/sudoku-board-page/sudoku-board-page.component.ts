@@ -1,13 +1,11 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SudokuBoardComponent } from './sudoku-board/sudoku-board.component';
-import { SudokuService } from '../services/sudoku.service';
 import { EDifficulty } from '../shared/enums/shared.enums';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
 import { SudokuBoardMenuComponent } from './sudoku-board-menu/sudoku-board-menu.component';
 import { AsyncPipe } from '@angular/common';
 import { SudokuBoardCellClickEvent } from './sudoku-board/sudoku-board.interface';
-import { takeUntil } from 'rxjs/operators';
+import { SudokuStore } from '../store/sudoku/sudoku.store';
 
 @Component({
   selector: 'app-sudoku-board-page',
@@ -16,47 +14,33 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './sudoku-board-page.component.html',
   styleUrls: ['./sudoku-board-page.component.css'],
 })
-export class SudokuBoardPageComponent implements OnInit, OnDestroy {
-  private sudokuService = inject(SudokuService);
+export class SudokuBoardPageComponent implements OnInit {
+  // private sudokuService = inject(SudokuService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private destroy$ = new Subject<void>();
-
-  board: number[][] = Array.from({ length: 9 }, () => Array(9).fill(0));
-  boardSolution: number[][] = [];
-  numberOfMistakes = new BehaviorSubject<number>(0);
+  readonly store = inject(SudokuStore);
   selectedDifficulty: EDifficulty | null = null;
   selectedCell: SudokuBoardCellClickEvent | null = null;
 
   ngOnInit() {
-    this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+    this.route.queryParams.subscribe((params) => {
       this.handleDifficultyParams(params);
     });
-    this.registerListenerForMistakes();
   }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
 
   onValidateButtonClicked() {
-    this.sudokuService.validateBoard(this.board).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => console.log(response),
-      error: () => alert('Validation failed'),
-    });
+    this.store.validateBoard();
   }
 
   onSolveButtonClicked() {
-    this.solveBoard();
+    this.store.solveBoard();
   }
 
   onNumberInputClicked(num: number) {
     if (this.selectedCell) {
       const { row, col } = this.selectedCell;
-      if (this.boardSolution[row][col] === num) {
-        this.board[row][col] = num;
+      if (this.store.boardSolution()[row][col] === num) {
+        this.store.setBoardByRowColumn(row, col, num);
       } else {
         this.handleIncorrectInput();
       }
@@ -72,7 +56,6 @@ export class SudokuBoardPageComponent implements OnInit, OnDestroy {
       this.loadBoard(this.selectedDifficulty);
     }
     this.selectedCell = null;
-    this.numberOfMistakes.next(0);
   }
 
   private handleDifficultyParams(params: Params) {
@@ -80,48 +63,24 @@ export class SudokuBoardPageComponent implements OnInit, OnDestroy {
 
     if (Object.values(EDifficulty).includes(difficulty)) {
       this.selectedDifficulty = difficulty;
-      this.loadBoard(difficulty);
+      this.store.generateBoard(difficulty);
     } else {
       console.error('Invalid difficulty level');
       this.router.navigate(['/']);
     }
   }
 
-  private registerListenerForMistakes() {
-    this.numberOfMistakes.pipe(takeUntil(this.destroy$)).subscribe((mistakes) => {
-      if (mistakes >= 3) {
-        alert('Game over');
-        this.board = this.boardSolution;
-      }
-    });
-  }
-
   private loadBoard(difficulty: EDifficulty) {
-    this.sudokuService.generateBoard(difficulty).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.board = response.board;
-        this.loadBoardSolution();
-      },
-      error: () => this.router.navigate(['/']),
-    });
-  }
-
-  private loadBoardSolution() {
-    this.sudokuService.solveBoard(this.board).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => this.boardSolution = response.solution,
-      error: () => alert('Failed to load board solution'),
-    });
-  }
-
-  private solveBoard() {
-    this.sudokuService.solveBoard(this.board).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => this.board = response.solution,
-      error: () => alert('Failed to solve the board'),
-    });
+    this.store.generateBoard(difficulty);
   }
 
   private handleIncorrectInput() {
-    alert('Incorrect number input');
-    this.numberOfMistakes.next(this.numberOfMistakes.value + 1);
+    alert('Your tip was wrong!');
+    this.store.incrementMistakes();
+    if (this.store.nuOfMistakes() > 3) {
+      alert('Game over');
+      this.store.setBoard(this.store.boardSolution());
+      this.store.resetMistakes();
+    }
   }
 }

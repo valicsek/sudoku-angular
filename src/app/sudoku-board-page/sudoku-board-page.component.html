@@ -1,7 +1,7 @@
 <div class="sudoku-board-page" data-test-id="sudoku-board-page">
     <h1 data-test-id="sudoku-level">Sudoku (Level: {{ selectedDifficulty }})</h1>
-    <p data-test-id="number-of-mistakes">Number of mistakes: {{ numberOfMistakes | async }}</p>
-    <app-sudoku-board [board]="board" (cellClicked)="onCellClicked($event)"
+    <p data-test-id="number-of-mistakes">Number of mistakes: {{ this.store.nuOfMistakes() }}</p>
+    <app-sudoku-board [board]="this.store.board()" (cellClicked)="onCellClicked($event)"
         data-test-id="sudoku-board"></app-sudoku-board>
     <app-sudoku-board-menu (validateClicked)="onValidateButtonClicked()" (solveClicked)="onSolveButtonClicked()"
         (numberInputClicked)="onNumberInputClicked($event)" (restartClicked)="onRestartButtonClicked()"

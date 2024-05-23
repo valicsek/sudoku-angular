@@ -75,7 +75,7 @@ export class SudokuBoardPageComponent implements OnInit, OnDestroy {
     this.numberOfMistakes.next(0);
   }
 
-  private handleDifficultyParams(params: any) {
+  private handleDifficultyParams(params: { difficulty: string }) {
     const difficulty = params['difficulty'] as EDifficulty;
 
     if (Object.values(EDifficulty).includes(difficulty)) {

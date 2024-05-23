@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EDifficulty } from '../../shared/enums/shared.enums';
+import { EDifficulty } from '../shared/enums/shared.enums';
 import {
   SudokuServiceResponse,
   SudokuServiceSolveResponse,

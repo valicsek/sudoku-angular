@@ -1,0 +1,14 @@
+<div class="sudoku-board-menu__container">
+    <div class="sudoku-board-menu__inputs">
+        @for (num of [1,2,3,4,5,6,7,8,9]; track num) {
+        <button class="sudoku-board-menu__input" [attr.data-test-id]="'number-input-' + num"
+            (click)="onNumberInputClicked(num)">{{ num }}</button>
+        }
+    </div>
+    <button class="sudoku-board-menu__button" [attr.data-test-id]="'validate-button'"
+        (click)="onValidateClicked()">Validate</button>
+    <button class="sudoku-board-menu__button" [attr.data-test-id]="'solve-button'"
+        (click)="onSolveClicked()">Solve</button>
+    <button class="sudoku-board-menu__button" [attr.data-test-id]="'restart-button'"
+        (click)="onRestartClicked()">Restart</button>
+</div>

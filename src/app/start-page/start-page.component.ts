@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { EDifficulty } from '../../shared/enums/shared.enums';
+import { EDifficulty } from '../shared/enums/shared.enums';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 

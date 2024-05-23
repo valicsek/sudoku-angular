@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SudokuService } from '../services/sudoku.service';
 import { SudokuBoardPageComponent } from './sudoku-board-page.component';
-import { EDifficulty } from '../../shared/enums/shared.enums';
+import { EDifficulty } from '../shared/enums/shared.enums';
 import { SUDOKU_BOARD_RECTANGLE_MOCK } from '../services/sudoku.service.mock';
 import {
   SudokuServiceResponse,

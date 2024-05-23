@@ -1,19 +1,27 @@
 /* Design Token Variables */
 :root {
-  --primary-color: #237bf7;
+  --primary-color: #e2ebf3;
   --secondary-color: #00e8f2;
-  --tertiary-color: #e3e3e3;
+  --tertiary-color: #fafafa;
+  --black-color: #000;
+  --white-color: #fff;
 
-  --body-background-color: #fff;
-  --body-text-color: #000;
+  --body-background-color: var(--white-color);
+  --body-text-color: var(--black-color);
   --font-family: "Inter", sans-serif;
 
   --button-primary-background-color: var(--secondary-color);
-  --button-primary-text-color: #fff;
-  --button-secondary-background-color: #fff;
+  --button-primary-text-color: var(--black-color);
+  --button-secondary-background-color: var(--white-color);
   --button-secondary-text-color: var(--primary-color);
   --button-tertiary-background-color: var(--tertiary-color);
-  --button-tertiary-text-color: #000;
+  --button-tertiary-text-color: var(--black-color);
+
+  --input-height: 56px;
+  --input-width: 100%;
+  --input-background: var(--primary-color);
+  --input-color: var(--black-color);
+  --input-border: 2px solid var(--black-color);
 
   --padding-small: 8px;
   --padding-medium: 16px;
@@ -25,23 +33,26 @@
   --margin-large: 24px;
   --margin-xlarge: 32px;
 
-  --sudoku-board-rectangle-gap: 4px;
-  --sudoku-board-rectangle-size: 56px;
-  --sudoku-board-rectangle-font-size: 42px;
-  --sudoku-board-rectangle-has-value-background-color: var(--primary-color);
-  --sudoku-board-rectangle-has-value-text-color: #fff;
-  --sudoku-board-rectangle-background-color: var(--tertiary-color);
-  --sudoku-board-rectangle-text-color: #000;
-  --sudoku-board-rectangle-border-color: #000;
-  --sudoku-board-rectangle-border-radius: 4px;
-  --sudoku-board-rectangle-border-color: var(--tertiary-color);
+  --sudoku-board-cell-size: 56px;
+  --sudoku-board-cell-font-size: 26px;
+  --sudoku-board-cell-has-value-background-color: var(--primary-color);
+  --sudoku-board-cell-has-value-text-color: var(--black-color);
+  --sudoku-board-cell-background-color: var(--tertiary-color);
+  --sudoku-board-cell-text-color: var(--black-color);
+  --sudoku-board-cell-border-color: var(--black-color);
+  --sudoku-board-cell-border-radius: 0px;
+  --sudoku-board-cell-border-color: var(--black-color);
+  --sudoku-board-cell-selected-background-color: var(--primary-color);
+  --sudoku-board-cell-selected-text-color: var(--black-color);
+
+  --sudoku-board-menu-gap: 10px;
 }
 
 body {
   background: var(--body-background-color);
+  color: var(--body-text-color);
   font-family: var(--font-family);
   font-weight: bold;
-  color: var(--body-text-color);
   margin: 0;
   padding: 0;
 }

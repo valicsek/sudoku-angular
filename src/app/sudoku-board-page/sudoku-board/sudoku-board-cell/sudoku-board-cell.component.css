@@ -1,0 +1,22 @@
+.sudoku-board-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--sudoku-board-cell-border-radius);
+  border: 1px solid var(--sudoku-board-cell-border-color);
+  width: var(--sudoku-board-cell-size);
+  height: var(--sudoku-board-cell-size);
+  font-size: var(--sudoku-board-cell-font-size);
+  background: var(--sudoku-board-cell-background-color);
+}
+
+.sudoku-board-cell.has-value {
+  background-color: var(--sudoku-board-cell-has-value-background-color);
+  color: var(--sudoku-board-cell-has-value-text-color);
+}
+
+.sudoku-board-cell.selected {
+  background-color: var(--sudoku-board-cell-selected-background-color);
+  color: var(--sudoku-board-cell-selected-text-color);
+}

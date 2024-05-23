@@ -1,8 +1,9 @@
 .sudoku-board {
   display: grid;
   width: fit-content;
-  margin: 0 auto;
-  grid-template-columns: repeat(9, var(--sudoku-board-rectangle-size));
-  grid-template-rows: repeat(9, var(--sudoku-board-rectangle-size));
-  gap: var(--sudoku-board-rectangle-gap);
+
+  grid-template-columns: repeat(9, 0fr);
+  grid-template-rows: repeat(9, 0fr);
+
+  border: 2px solid var(--black-color);
 }

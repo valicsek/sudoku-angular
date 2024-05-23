@@ -1,5 +1,8 @@
 <div class="sudoku-board">
-  @for (row of board; track row) { @for (col of row; track col) {
-  <app-sudoku-board-rectangle [value]="col" />
-  } }
+  @for (row of board; track row; let rowIndex = $index) {
+  @for (cellValue of row; track cellValue; let cellIndex = $index) {
+  <app-sudoku-board-cell [value]="cellValue" [row]="rowIndex" [col]="cellIndex"
+    (cellClicked)="onCellClicked($event)"></app-sudoku-board-cell>
+  }
+  }
 </div>

@@ -1,4 +1,7 @@
-.container {
+.app-container {
+  display: flex;
   margin: 0 auto;
   text-align: center;
+  flex-direction: column;
+  align-items: center;
 }

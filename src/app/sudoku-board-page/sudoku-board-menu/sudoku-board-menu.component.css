@@ -1,0 +1,35 @@
+:root {
+    --sudoku-board-menu-input-background: var(--input-background);
+    --sudoku-board-menu-input-color: var(--black-color);
+}
+
+.sudoku-board-menu__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-medium);
+}
+
+.sudoku-board-menu__inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.sudoku-board-menu__input {
+    height: var(--input-height);
+    background: var(--primary-color);
+    color: var(--black-color);
+    border: var(--input-border);
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.sudoku-board-menu__button {
+    height: 56px;
+    background: var(--button-primary-background-color);
+    color: var(--button-primary-text-color);
+    border: 2px solid var(--black-color);
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
